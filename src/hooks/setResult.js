@@ -1,5 +1,6 @@
 //hooks/setResult.js
 
+import { useEffect } from "react";
 import { postServerData } from "../helper/helper";
 import * as Action from "../redux/result_reducer";
 
@@ -22,19 +23,21 @@ export const updateResult = (payload) => async (dispatch) => {
 /** insert user data */
 export const usePublishResult = (resultData) => {
     const { result, username } = resultData;
-    (async () => {
-        try {
-            if (!result.length || !username) {
-                throw new Error("Couldn't get Result: Invalid result or username.");
+    useEffect(() => {
+        (async () => {
+            try {
+                if (!result.length || !username) {
+                    throw new Error("Couldn't get Result: Invalid result or username.");
+                }
+                const port = process.env.PORT || 3000;
+                const response = await postServerData(
+                    `http://localhost:${port}/api/result`,
+                    resultData
+                );
+                console.log("Result published:", response);
+            } catch (error) {
+                console.error("Error publishing result:", error);
             }
-            const port = process.env.PORT || 3000;
-            const response = await postServerData(
-                `http://localhost:${port}/api/result`,
-                resultData
-            );
-            console.log("Result published:", response);
-        } catch (error) {
-            console.error("Error publishing result:", error);
-        }
-    })();
+        })();
+    }, [result, username, resultData]);
 };

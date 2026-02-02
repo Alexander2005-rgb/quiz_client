@@ -6,7 +6,7 @@ import { getServerData } from "../helper/helper";
 import * as Action from "../redux/question_reducer";
 
 /** fetch question hook to fetch api data and set value to store */
-export const useFetchQestion = (quizId = null) => {
+export const useFetchQuestion = (quizId = null) => {
     const dispatch = useDispatch();
     const [getData, setGetData] = useState({
         isLoading: false,
@@ -29,8 +29,11 @@ export const useFetchQestion = (quizId = null) => {
                 );
 
                 if (questions.length > 0) {
-                    setGetData((prev) => ({ ...prev, isLoading: false }));
-                    setGetData((prev) => ({ ...prev, apiData: questions }));
+                    setGetData((prev) => ({
+                        ...prev,
+                        isLoading: false,
+                        apiData: questions
+                    }));
 
                     /** dispatch an action */
                     dispatch(Action.startExamAction({ question: questions, answers, quizId }));
