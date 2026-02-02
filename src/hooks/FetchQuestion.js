@@ -1,4 +1,4 @@
-//hooks/FetchQuestions.js
+//hooks/FetchQuestion.js
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
