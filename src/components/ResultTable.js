@@ -1,13 +1,13 @@
 //components/ResultTable.js
 
 import React, { useEffect, useState } from 'react';
-import { getServerData } from '../helper/helper';
+import { getServerData, API_BASE } from '../helper/helper';
 
 export default function ResultTable() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    getServerData(`http://localhost:${process.env.PORT || 3000}/api/result`, (res) => {
+    getServerData(`${API_BASE}/result`, (res) => {
       setData(res);
     }).catch(error => console.error('Error fetching result data:', error));
   }, []);

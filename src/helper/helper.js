@@ -4,6 +4,9 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
 
+/** API base URL: set REACT_APP_API_URL in production (e.g. https://your-api.com/api) */
+export const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:3000/api";
+
 export function attempts_Number(result) {
     return result.filter((r) => r !== undefined).length;
 }

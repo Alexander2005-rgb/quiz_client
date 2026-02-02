@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getServerData } from "../helper/helper";
+import { getServerData, API_BASE } from "../helper/helper";
 import * as Action from "../redux/question_reducer";
 
 /** fetch question hook to fetch api data and set value to store */
@@ -21,8 +21,8 @@ export const useFetchQuestion = (quizId = null) => {
         (async () => {
             try {
                 const url = quizId
-                    ? `http://localhost:${process.env.PORT || 3000}/api/questions?quizId=${quizId}`
-                    : `http://localhost:${process.env.PORT || 3000}/api/questions`;
+                    ? `${API_BASE}/questions?quizId=${quizId}`
+                    : `${API_BASE}/questions`;
                 const [{ questions, answers }] = await getServerData(
                     url,
                     (data) => data
