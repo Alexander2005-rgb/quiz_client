@@ -6,7 +6,7 @@ import { getServerData } from "../helper/helper";
 import * as Action from "../redux/question_reducer";
 
 /** fetch question hook to fetch api data and set value to store */
-export const useFetchQestion = (quizId = null) => {
+export const useFetchQuestion = (quizId = null) => {
     const dispatch = useDispatch();
     const [getData, setGetData] = useState({
         isLoading: false,
@@ -49,9 +49,6 @@ export const useFetchQestion = (quizId = null) => {
 
     return [getData, setGetData];
 };
-
-/** Export alias for correct naming convention */
-export const useFetchQuestion = useFetchQestion;
 
 /** MoveAction Dispatch function */
 export const MoveNextQuestion = () => (dispatch) => {

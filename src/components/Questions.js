@@ -2,14 +2,14 @@
 
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useFetchQestion } from "../hooks/FetchQuestion";
+import { useFetchQuestion } from "../hooks/FetchQuestion";
 import { updateResult } from "../hooks/setResult";
 
 export default function Questions({ onChecked }) {
     const dispatch = useDispatch();
     const { trace } = useSelector((state) => state.questions);
     const result = useSelector((state) => state.result.result);
-    const [{ isLoading, apiData, serverError }] = useFetchQestion();
+    const [{ isLoading, apiData, serverError }] = useFetchQuestion();
     const questions = useSelector((state) => state.questions.queue[trace]);
 
     function onSelect(i) {

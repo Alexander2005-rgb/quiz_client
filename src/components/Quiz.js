@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Navigate, useParams } from "react-router-dom";
 import Questions from "./Questions";
-import { MoveNextQuestion, MovePrevQuestion, useFetchQestion } from "../hooks/FetchQuestion";
+import { MoveNextQuestion, MovePrevQuestion, useFetchQuestion } from "../hooks/FetchQuestion";
 import { PushAnswer } from "../hooks/setResult";
 
 export default function Quiz() {
@@ -15,7 +15,7 @@ export default function Quiz() {
     const dispatch = useDispatch();
 
     // Fetch questions for the specific quiz
-    const [{ isLoading, apiData, serverError }] = useFetchQestion(quizId);
+    const [{ isLoading, apiData, serverError }] = useFetchQuestion(quizId);
 
     function onNext() {
         if (trace < queue.length) {
