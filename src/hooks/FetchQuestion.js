@@ -50,6 +50,9 @@ export const useFetchQuestion = (quizId = null) => {
     return [getData, setGetData];
 };
 
+/** Export alias to fix build errors where components import the typo name */
+export const useFetchQestion = useFetchQuestion;
+
 /** MoveAction Dispatch function */
 export const MoveNextQuestion = () => (dispatch) => {
     try {
